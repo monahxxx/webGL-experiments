@@ -2,9 +2,11 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('gulp-autoprefixer');
+const plumber = require('gulp-plumber');
 
 gulp.task('sass', () => {
-	gulp.src('src/scss/*.scss')
+    gulp.src('src/scss/*.scss')
+        .pipe(plumber())    
 		.pipe(sass())
 		.pipe(autoprefixer())
 		.pipe(gulp.dest('dist/styles'))
