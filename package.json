@@ -1,0 +1,32 @@
+{
+  "name": "webgl-experiments",
+  "version": "0.0.1",
+  "description": "rep to do crazy stuff with webGL technology",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monahxxx/webGL-experiments.git"
+  },
+  "keywords": [
+    "webgl",
+    "js",
+    "animation",
+    "svg"
+  ],
+  "author": "Ivan Borushko and Slava Ustinov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monahxxx/webGL-experiments/issues"
+  },
+  "homepage": "https://github.com/monahxxx/webGL-experiments#readme"
+}
