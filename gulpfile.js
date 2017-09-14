@@ -8,7 +8,7 @@ gulp.task('sass', () => {
     gulp.src('src/scss/*.scss')
         .pipe(plumber())    
 		.pipe(sass())
-		.pipe(autoprefixer())
+		// .pipe(autoprefixer())
 		.pipe(gulp.dest('dist/styles'))
 		.pipe(browserSync.stream());
 });
@@ -36,8 +36,8 @@ gulp.task('html-watch', ['html'], (done) => {
 gulp.task('webserver', () => {
 	browserSync.init({
 		server: {
-			baseDir: './dist',
-		},
+            baseDir: ["./", "./dist"]
+        },
 	});
 	gulp.watch('src/*.html', ['html-watch']);
 	gulp.watch('src/js/*.js', ['js-watch']);
