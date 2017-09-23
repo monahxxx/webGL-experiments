@@ -23,6 +23,17 @@ gulp.task('js-watch', ['js'], (done) => {
 	done();
 });
 
+gulp.task('copyFonts', () => {
+    gulp.src(['src/fonts/**'])
+    	.pipe(gulp.dest('dist/fonts'));
+});
+gulp.task('copyImages', () => {
+    gulp.src(['src/images/**'])
+    .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('copy', ['copyFonts','copyImages'], () => {});
+
 gulp.task('html', () => {
 	gulp.src('src/*.html')
 		.pipe(gulp.dest('dist'));
@@ -45,4 +56,4 @@ gulp.task('webserver', () => {
 });
 
 
-gulp.task('serve', ['sass', 'js', 'html', 'webserver']);
+gulp.task('serve', ['sass', 'js', 'html', 'webserver', 'copy']);

@@ -1,4 +1,209 @@
-html,body{
+body {margin: 0 auto;
   padding: 0;
-  margin: 0;
+  height: 28000px;
+  font-family: 'regular';
+  background: black;
 }
+
+
+html {height: 100%;}
+
+
+canvas{
+  //background: url("../space_bg.jpg") ;
+}
+
+@font-face {
+  font-family: 'bold';
+  src: url("../fonts/Montserrat-Bold.ttf") format("opentype");
+}
+@font-face {
+  font-family: 'regular';
+  src: url("../fonts/Montserrat-Regular.ttf") format("opentype");
+}
+@font-face {
+  font-family: 'light';
+  src: url("../fonts/Montserrat-Light.ttf") format("opentype");
+}
+@font-face {
+  font-family: 'hair';
+  src: url("../fonts/Montserrat-Hairline.otf") format("opentype");
+}
+
+$aqua:#66a8a6;
+$brown:#605248;
+$orange:#9b59b6;
+
+$purple:#8e44ad;
+
+$blue:#3498db;
+
+:root {
+  --scroll: 0px;
+  --bkgX: 0px;
+  --bkgY: 0px;
+}
+
+
+h1,h2,h3,h4{text-transform: uppercase;font-family: 'bold';}
+
+h1{font-size: 60pt;color: $blue; }
+
+
+#canvas{
+  position: fixed;
+  z-index:3;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+
+  &.scrolled{
+    pointer-events: all;
+  }
+}
+
+#bkg{
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url("../images/space_bg.jpg") ;
+  top:0px;
+  left: 0px;
+
+  #image{
+    z-index: 2;
+    position: fixed;
+    width: 120%;
+    height: 120%;
+    top:-10%;
+    background: url("../images/space_cloud.png") ;
+  }
+}
+
+
+#footer{
+    position: fixed;
+    z-index: 999;
+    color: white;
+    padding: 10px 0px;
+    text-align: center;
+    bottom:0px;
+    width: 100%;
+}
+
+.header{width: 100%;
+  z-index: 2;
+  height: 100%;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  will-change: transform;
+
+  .wrapper{text-align: center;text-transform: uppercase;font-family: 'bold';
+    .top{ color: $aqua;
+      font-size: 5em;
+      will-change: transform;
+      text-shadow: 0px 0px 240px $blue;
+      //transform: translateX(var(--scroll));
+    }
+    .evo{color: $blue;
+      font-size: 9em;
+      margin: -2% 0px;
+      margin-bottom: -4%;
+      will-change: transform;
+    }
+    .bigest{color: $aqua;
+      font-size: 12em;
+      margin: -2% 0px;
+      will-change: transform;
+      text-shadow: 0px 0px 240px $blue;
+      //transform: translateX( var(--scroll) );
+    }
+    .caption{font-family: 'hair';font-size: 2.6em;color: white }
+    .copyright{
+      color:$purple;
+      padding: 8px 5px;
+      border-top: 1px solid $brown;
+      border-bottom: 1px solid $brown;
+      display: inline-block;
+      text-shadow: 0px 0px 40px lighten($purple, 20%);
+      margin-top: 20px;}
+  }
+}
+
+.section{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left:  0;
+  z-index:2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.active{
+    display: flex;
+  }
+
+
+  .content_wrap{
+    display: flex;
+    width: 100%;
+    height: 500px;
+    position: relative;
+
+    .image{
+      position: absolute;
+      left: 0px;
+      will-change: transform;
+    }
+
+    .content{
+      position: absolute;
+      right: 0px;
+      min-width: 350px;
+      padding-top: 100px;
+
+      .title{
+        will-change: transform;
+      }
+
+      .text{
+
+        &:before{
+          content: "1970's";
+          font-size: 7em;
+          color: $blue;
+          font-family: 'bold';
+          position: absolute;
+          left: 0px;
+          top: -180px;
+        }
+
+        display: inline-block;
+        padding: 50px;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+        will-change: transform;
+      }
+    }
+  }
+
+}
+
+
+#coodr {
+  position: fixed;
+  z-index: 999;
+  height: 100%;
+  width: 2px;
+  background: red;
+  top: 0px;
+  left: calc(100vw / 2 - 2px);
+}
+
