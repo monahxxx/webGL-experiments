@@ -68,30 +68,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     createPoints();
 
-    function timedChunk(particles, positions, fn, context, callback){
-        var i = 0;
-        var tick = function() {
-            var start = new Date().getTime();
-            for (; i < positions.length && (new Date().getTime()) - start < 50; i++) {
-                fn.call(context, particles[i], positions[i]);
-            }
-            if (i < positions.length) {
-                // Yield execution to rendering logic
-                setTimeout(tick, 25);
-            } else {
-                callback(positions, particles);
-            }
-        };
-        setTimeout(tick, 25);
-    }
-
-
     function animate() {
         requestAnimationFrame( animate );
-
-
-
-        timedChunk(points);
 
         for(i=0; i < points.length; i++){
             if(points[i].position.z > 1000) {
