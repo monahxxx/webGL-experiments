@@ -1,40 +1,21 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    var scene = new THREE.Scene();
+    var scene = new THREE.Scene(),
+        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 5000);
 
-    var camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 5000);
     scene.add(camera);
-    camera.position.set(500, 0, 1000);
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    camera.position.set(0, 0, 1000);
 
-    renderer = new THREE.CanvasRenderer( { alpha: true } );
+    var renderer = new THREE.WebGLRenderer( { alpha: true } );
     renderer.setClearColor( 0x000000, 0 );
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize( window.innerWidth, window.innerHeight );
 
     var canvasContainer = document.querySelector("#canvas");
-        canvasContainer.appendChild( renderer.domElement);
+    canvasContainer.appendChild( renderer.domElement);
 
-    controls = new THREE.TrackballControls( camera, renderer.domElement );
+    var controls = new THREE.TrackballControls( camera, renderer.domElement );
 
 
-//        var geometry = new THREE.BoxGeometry( 1, 1, 1 , 2, 2, 2);
-//        var material = [
-//            //делаем каждую сторону своего цвета
-//            new THREE.MeshBasicMaterial( { color: 0xE01B4C }), // правая сторона
-//            new THREE.MeshBasicMaterial( { color: 0x34609E }), // левая сторона
-//            new THREE.MeshBasicMaterial( { color: 0x7CAD18 }), //верх
-//            new THREE.MeshBasicMaterial( { color: 0x00EDB2 }), // низ
-//            new THREE.MeshBasicMaterial( { color: 0xED7700 }), // лицевая сторона
-//            new THREE.MeshBasicMaterial( { color: 0xB5B1AE }) // задняя сторона
-//        ];
-//        var geometry = new THREE.CircleBufferGeometry( 0, 0, 0, 6.3 );
-//        var material = new THREE.MeshBasicMaterial( {
-//            color: 0xffff00,
-//            wireframe: false,
-//            wireframeLinewidth:0,
-//            morphTargets: true
-//        });
-//        var cube = new THREE.Mesh( geometry, material );
-//        scene.add(cube);
 
     // var LineGeometry = new THREE.Geometry();
     // var LineMaterial = new THREE.LineBasicMaterial({color: 0xffffff, linewidth:0.5});
@@ -57,70 +38,72 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // scene.add(lines);
 
 
-// POINTS
-    var PointsGeometry = new THREE.Geometry();
-    var PointsMaterial = new THREE.PointsMaterial({color: 0xffffff, size:1.3});
+    // POINTS
+    var points = [];
+    var randomRange = function(min, max) {
+        return Math.random()*(max-min) + min;
+    };
 
-    var points;
     function createPoints() {
-        var xCord, yCord, zCord;
-        xCord = Math.floor(Math.random()*3000-300);
-        yCord = Math.floor(Math.random()*3000-1000);
-        zCord = Math.floor(Math.random()*3000);
+        for(i = 0; i < 1000; i++){
 
-        PointsGeometry.vertices.push(new THREE.Vector3(xCord, yCord, zCord));
-        points = new THREE.Points(PointsGeometry,PointsMaterial);
+            var xCord, yCord, zCord, point,
+                PointsGeometry = new THREE.Geometry(),
+                PointsMaterial = new THREE.PointsMaterial({color: 0xffffff, size:1});
+
+            xCord = randomRange(-500, 500);
+            yCord = randomRange(-500, 500);
+            zCord = i;
+
+            PointsGeometry.vertices.push(new THREE.Vector3());
+            point = new THREE.ParticleSystem(PointsGeometry,PointsMaterial);
+
+            point.position.x = xCord;
+            point.position.y = yCord;
+            point.position.z = zCord;
+
+            points.push(point);
+            scene.add(point);
+        }
+    }
+    createPoints();
+
+    function timedChunk(particles, positions, fn, context, callback){
+        var i = 0;
+        var tick = function() {
+            var start = new Date().getTime();
+            for (; i < positions.length && (new Date().getTime()) - start < 50; i++) {
+                fn.call(context, particles[i], positions[i]);
+            }
+            if (i < positions.length) {
+                // Yield execution to rendering logic
+                setTimeout(tick, 25);
+            } else {
+                callback(positions, particles);
+            }
+        };
+        setTimeout(tick, 25);
     }
 
-    for(i=0;i<9000;i++){
-        createPoints();
-    }
 
-
-    scene.add(points);
-
-
-// animation
-    step = 0;
-    dropStep = 0;
     function animate() {
         requestAnimationFrame( animate );
-        // lines.rotation.x = Math.cos(step);
-        // lines.rotation.y = Math.abs(Math.sin(step));
-        // lines.position.x = step;
 
-        points.position.z += 1;
+
+
+        timedChunk(points);
+
+        for(i=0; i < points.length; i++){
+            if(points[i].position.z > 1000) {
+                points[i].position.z -= 1100;
+            }
+
+            points[i].position.z += 1;
+        }
 
         renderer.render( scene, camera );
         controls.update();
     }
     animate();
-
-
-
-//        function dropAnimate() {
-//            requestAnimationFrame( dropAnimate );
-//            points.position.z += 0.01;
-//            renderer.render( scene, camera );
-//        }
-//        dropAnimate();
-
-
-
-
-// key down function
-//     var timer;
-//     $(window).keypress(function () {
-//         if(timer){
-//             return;
-//         }
-//         timer = setInterval(function () {
-//             step += 0.01;
-//         }, 25);
-//     });
-//     $(window).keyup(function () {
-//         clearInterval(timer);
-//         timer = null;
-//     });
 });
 

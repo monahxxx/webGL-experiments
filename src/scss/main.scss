@@ -9,9 +9,7 @@ body {margin: 0 auto;
 html {height: 100%;}
 
 
-canvas{
-  //background: url("../space_bg.jpg") ;
-}
+canvas{}
 
 @font-face {
   font-family: 'bold';
@@ -57,9 +55,12 @@ h1{font-size: 60pt;color: $blue; }
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  will-change: transform, opacity;
+
 
   &.scrolled{
     pointer-events: all;
+    will-change: transform, opacity;
   }
 }
 
@@ -83,6 +84,7 @@ h1{font-size: 60pt;color: $blue; }
 }
 
 
+
 #footer{
     position: fixed;
     z-index: 999;
@@ -101,38 +103,48 @@ h1{font-size: 60pt;color: $blue; }
   align-items: center;
   justify-content: center;
   position: fixed;
-  will-change: transform;
+  will-change: transform, opacity;
 
-  .wrapper{text-align: center;text-transform: uppercase;font-family: 'bold';
-    .top{ color: $aqua;
-      font-size: 5em;
-      will-change: transform;
-      text-shadow: 0px 0px 240px $blue;
-      //transform: translateX(var(--scroll));
+  .wrapper{
+      text-align: center;
+      text-transform: uppercase;
+      font-family: 'bold';
+      will-change: transform, opacity;
+
+        .top{ color: $aqua;
+            font-size: 5em;
+            will-change: transform, opacity;
+            text-shadow: 0px 0px 240px $blue;
+        }
+        .evo{color: $blue;
+            font-size: 9em;
+            margin: -2% 0px;
+            margin-bottom: -4%;
+            will-change: transform, opacity;
+        }
+        .bigest{color: $aqua;
+            font-size: 12em;
+            margin: -2% 0px;
+            will-change: transform, opacity;
+            text-shadow: 0px 0px 240px $blue;
+        }
+        .caption{
+            font-family: 'hair';
+            font-size: 2.6em;
+            color: white;
+            will-change: transform, opacity;
+        }
+        .copyright{
+            color:$purple;
+            padding: 8px 5px;
+            border-top: 1px solid $brown;
+            border-bottom: 1px solid $brown;
+            display: inline-block;
+            will-change: transform, opacity;
+            text-shadow: 0px 0px 40px lighten($purple, 20%);
+            margin-top: 20px;
+        }
     }
-    .evo{color: $blue;
-      font-size: 9em;
-      margin: -2% 0px;
-      margin-bottom: -4%;
-      will-change: transform;
-    }
-    .bigest{color: $aqua;
-      font-size: 12em;
-      margin: -2% 0px;
-      will-change: transform;
-      text-shadow: 0px 0px 240px $blue;
-      //transform: translateX( var(--scroll) );
-    }
-    .caption{font-family: 'hair';font-size: 2.6em;color: white }
-    .copyright{
-      color:$purple;
-      padding: 8px 5px;
-      border-top: 1px solid $brown;
-      border-bottom: 1px solid $brown;
-      display: inline-block;
-      text-shadow: 0px 0px 40px lighten($purple, 20%);
-      margin-top: 20px;}
-  }
 }
 
 .section{
@@ -141,7 +153,7 @@ h1{font-size: 60pt;color: $blue; }
   height: 100%;
   top: 0;
   left:  0;
-  z-index:2;
+  z-index:4;
   display: none;
   align-items: center;
   justify-content: center;
@@ -160,7 +172,7 @@ h1{font-size: 60pt;color: $blue; }
     .image{
       position: absolute;
       left: 0px;
-      will-change: transform;
+      will-change: transform, opacity;
     }
 
     .content{
@@ -170,7 +182,7 @@ h1{font-size: 60pt;color: $blue; }
       padding-top: 100px;
 
       .title{
-        will-change: transform;
+        will-change: transform, opacity;
       }
 
       .text{
@@ -189,7 +201,7 @@ h1{font-size: 60pt;color: $blue; }
         padding: 50px;
         background: rgba(255, 255, 255, 0.8);
         box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-        will-change: transform;
+        will-change: transform, opacity;
       }
     }
   }
