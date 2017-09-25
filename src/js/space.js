@@ -40,23 +40,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // POINTS
     var points = [];
+    var pointsGM;
     var randomRange = function(min, max) {
         return Math.random()*(max-min) + min;
     };
+
+
+    var texture = (new THREE.TextureLoader).load("../images/rick.png");
+    // var material = new THREE.PointCloudMaterial({
+    //     size: 20,
+    //     // vertexColors: THREE.VertexColors,
+    //     map: texture,
+    //     alphaTest: 0.5
+    // });
 
     function createPoints() {
         for(i = 0; i < 1000; i++){
 
             var xCord, yCord, zCord, point,
                 PointsGeometry = new THREE.Geometry(),
-                PointsMaterial = new THREE.PointsMaterial({color: 0xffffff, size:1});
+                PointsMaterial = new THREE.PointsMaterial({color: 0xffffff, size:20, map: texture, alphaTest: 0.5});
+
+            pointsGM = PointsGeometry;
 
             xCord = randomRange(-500, 500);
             yCord = randomRange(-500, 500);
             zCord = i;
 
             PointsGeometry.vertices.push(new THREE.Vector3());
-            point = new THREE.ParticleSystem(PointsGeometry,PointsMaterial);
+            point = new THREE.Points(PointsGeometry,PointsMaterial);
 
             point.position.x = xCord;
             point.position.y = yCord;
@@ -65,8 +77,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
             points.push(point);
             scene.add(point);
         }
+
+
     }
     createPoints();
+
+
+    var worker = new Worker('js/worker.js');
+
+
+    test = JSON.stringify(pointsGM,points);
+    console.log(test);
+    worker.postMessage(test);
+
+    worker.onmessage = function (e){
+        console.log(e.data);
+    };
+
 
     function animate() {
         requestAnimationFrame( animate );
