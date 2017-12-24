@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     var isCanavasScrolled = false;
 
+
+
+
     var switchScroll = function () {
         if(isCanavasScrolled){
-            $("#canvas").addClass("scrolled");
+            $("#paralax").addClass("scrolled");
         }else{
-            $("#canvas").removeClass("scrolled");
+            $("#paralax").removeClass("scrolled");
         }
-        console.log(isCanavasScrolled);
     };
 
     $(window).on('keydown ', function (e) {

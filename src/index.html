@@ -5,7 +5,10 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	<script src="node_modules/three/build/three.js"></script>
 	<script src="node_modules/jquery/dist/jquery.js"></script>
+	<script src="http://cssing.org.ua/examples/picklerick/js/tweenmax.js"></script>
+
 	<script src="js/TrackballControls.js"></script>
+	<script src="js/OrbitControls.js"></script>
 	<script src="js/CanvasRenderer.js"></script>
 	<script src="js/Projector.js"></script>
 	<script src="js/main.js"></script>
@@ -13,29 +16,247 @@
 	<script src="js/custom.js"></script>
 </head>
 <body>
-	<!--<div id="coodr"></div>-->
+	<div class="top_nav">
+		<div class="logo">
+			<span>Videology, <span class="rus">ты просто космос</span></span>
+		</div>
+		<!--<div class="position_list">-->
+			<!--<div id="space_shatle"></div>-->
+			<!--<div class="fill_wrapper">-->
+				<!--<div class="fill_block"></div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<div class="controls">1</div>
+	</div>
 	<div id="bkg">
 		<div id="image"></div>
+		<div id="image_small"></div>
 	</div>
+	<div id="canvas_bkg"></div>
+
 	<div id="canvas"></div>
 
-
-
-	<div id="paralax">
-		<div class="header" id="header">
-			<div class="wrapper">
-				<div class="top">The</div>
-				<div class="evo">Evolution</div>
-				<div class="bigest">Of CODE</div>
-				<div class="caption">Videology is a journey, not a destination</div>
-				<div class="copyright">
-					Powered by GolfDiscount
-				</div>
-			</div>
-		</div>
+	<div class="left_nav">
+		<ul>
+			<li class="nav_item active">core</li>
+			<li class="nav_item">adserver</li>
+			<li class="nav_item">data</li>
+			<li class="nav_item">devops</li>
+			<li class="nav_item">dmp</li>
+			<li class="nav_item">firefliest</li>
+			<li class="nav_item">manage</li>
+			<li class="nav_item">rge</li>
+			<li class="nav_item">spartans</li>
+			<li class="nav_item">vikings</li>
+		</ul>
 	</div>
 
-	<div id="footer">Press Ctrl + Scroll through the SPACE</div>
+	<div class="team_bg">
+		<ul>
+			<li class="active">core</li>
+			<li>adserver</li>
+			<li>data</li>
+			<li>devops</li>
+			<li>dmp</li>
+			<li>firefliest</li>
+			<li>manage</li>
+			<li>rge</li>
+			<li>spartans</li>
+			<li>vikings</li>
+		</ul>
+	</div>
 
+	<audio id="audio" src="space.mp3" autoplay loop></audio>
+	<audio id="hover_audio" src="hover_a.wav" ></audio>
+
+	<!--<div id="coodr"></div>-->
+
+	<!--<div id="paralax">-->
+		<!--<div class="header" id="header">-->
+			<!--<div class="wrapper">-->
+				<!--<div class="top">The</div>-->
+				<!--<div class="evo">Evolution</div>-->
+				<!--<div class="bigest">Of CODE</div>-->
+				<!--<div class="caption">Videology is a journey, not a destination</div>-->
+				<!--<div class="copyright">-->
+					<!--Scroll for expirience!-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section core_team">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left"></div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>Core Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dignissimos-->
+								<!--exercitationem magnam, modi nemo porro quasi. Explicabo, molestiae possimus? Ab at-->
+								<!--excepturi iste libero numquam officia qui, quos reiciendis voluptatum.</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--<div class="overlay">-->
+								<!--<div class="content">-->
+									<!--<p class="text-title">-->
+										<!--Core Team-->
+									<!--</p>-->
+									<!--<p>-->
+										<!--Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet doloribus esse non sed-->
+										<!--tempore, tenetur veritatis voluptas voluptate. Et non, pariatur. Consectetur dolores-->
+										<!--doloribus mollitia nihil quia quo vero voluptatibus?-->
+									<!--</p>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>Vikings</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--22222 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>Manage</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--33333 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>Spartans</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--33333 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>Fireflies</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--33333 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>devops</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--33333 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>adserver</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--33333 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>data</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--33333 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="section">-->
+			<!--<div class="content_wrap">-->
+				<!--<div class="left">-->
+					<!--<div class="image"></div>-->
+				<!--</div>-->
+				<!--<div class="right">-->
+					<!--<div class="content">-->
+						<!--<div class="title">-->
+							<!--<h2>dmp</h2>-->
+						<!--</div>-->
+						<!--<div class="text">-->
+							<!--33333 TEXT-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+	<!--</div>-->
 </body>
 </html>
